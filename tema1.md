@@ -34,10 +34,16 @@ Sin embargo, si se amortiza a 7 años, cada año pagaríamos menos, iría descen
 
 [1and1.es](https://www.1and1.es/) ofrece ambos servicios [[1](https://www.1and1.es/servidores-virtuales), [2](https://www.1and1.es/que-es-cloud-computing)]. Suponiendo que tenemos que coger un procesador parecido, he optado por el **Servidor Cloud XXL**, de 4 núcleos, y para la nube, el **L4i** en el caso del servidor, también de 4 núcleos.
 
-El precio del primero: 50 € al mes  
-El precio del segundo: 60 € al mes
+El precio del primero: 50 € aprox. al mes  
+El precio del segundo: 60 € aprox. al mes
 
-Para el precio del servidor, esta web no nos permite hacer precio si se usa el 1 %
+
+* Para el precio del servidor virtual, esta web no nos permite hacer precio si se usa el 1 %, es decir, nuestro precio será el mismo usemos el 1, 10, o 100 %. Al año el precio será de 60 € * 12 = 720 € al mes.  
+* Si queremos el servicio de nube, este sí permitirá que usemos el tanto por ciento que deseemos, pasando de 0,60 € al mes a 6 € AL AÑO.
+* En [Hostalia](https://www.hostalia.com/servidor-cloud/), un servicio con características similares al de la nube, *Servidor Cloud L* sale por 100 € al mes, si usaramos el 1 %, lo tendríamos por 12 € AL AÑO, y al 10%, 120 € al año, más caro que el otro servicio. 
+* [Azure](https://azure.microsoft.com/es-es/) ofrece precios bastante asequibles, sin embargo no me he parado a compararlos con los antes mencionados.
+
+
 
 
 ###Ejercicio 3: ¿Qué tipo de virtualización usarías en cada caso?
