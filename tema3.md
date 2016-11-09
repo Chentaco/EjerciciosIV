@@ -230,9 +230,9 @@ Después hay que validar dicho archivo, usando el CLI o directamente desde el na
   
 Finalmente solo hay que utilizar la imagen del botón y el link a nuestro GitHub como indica el tutorial:  
   
-```[![Heroku Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Chentaco/Proyecto-IV/tree/master)```  
+```[![Heroku Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Chentaco/Proyecto-IV/tree/master```  
   
-
+    
 El resultado:  
   
 [![Heroku Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Chentaco/Proyecto-IV/tree/master)
