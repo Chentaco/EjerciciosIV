@@ -226,7 +226,10 @@ Ahora he creador un botón para permitir a quien sea acceder a mi aplicación en
   
 Después hay que validar dicho archivo, usando el CLI o directamente desde el navegador con el siguiente link:  
   
-```https://heroku.com/deploy?template=https://github.com/Chentaco/Proyecto-IV/tree/master```
+```
+https://heroku.com/deploy?template=https://github.com/Chentaco/Proyecto-IV/tree/master
+```  
+
   
 Finalmente solo hay que utilizar la imagen del botón y el link a nuestro GitHub como indica el tutorial:  
   
