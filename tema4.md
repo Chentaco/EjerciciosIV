@@ -8,7 +8,7 @@ Para instalar el paquete, basta con utilizar el comando:
   
 Una vez instalado, podemos usar el comando ```dpkg -s lxc``` para ver la versión instalada. En mi caso:  
   
-![img]()  
+![img](capturas/t4ej1.PNG)  
   
 En los próximos ejercicios vamos a usar deboostrap y lxc-templates, para crear nuestros contenedores. Esta versión ya me los han instalado, pero en caso de que no lo haya hecho, tienes que instalarlo a mano.  
 
@@ -18,22 +18,18 @@ Para ello voy a crear e iniciar un contenedor de prueba:
   
 ```sudo lxc-create -t ubuntu -n ContenedorUbuntu```  Para crearlo
   
-![img]()  
+![img](capturas/t4ej2-1.PNG)  
   
 **NOTA 1**: Como podemos ver en la captura, nos dice que por defecto, el usuario y su contraseña es "ubuntu".  
 
 
 ```sudo lxc-start -n ContenedorUbuntu``` Para arrancarlo  
   
-![img]()  
+![img](capturas/t4ej2-2.PNG)  
   
 Ahora, para ver las interfaces puente, basta con mirar tanto en la máquina cliente como la servidora. Para ello hay que usar **ifconfig:**  
-  
-Anfitrión:
-![img]()  
-  
-Contenedor: 
-![img]()  
+
+![img](capturas/t4ej2-3.PNG)  
 
 Podemos observar que se han creado dos interfaces. Según la [documentación de LXC](https://linuxcontainers.org/lxc/manpages/man5/lxc.container.conf.5.html) donde **lxcbr0** hace referencia a la conexión "puente" con el host, pudiendose asi conectar a internet usando la misma configuración que la máquina anfritiona; mientras que la otra que se ha creado es la correspondiente a localhost.  
 
@@ -43,13 +39,9 @@ Creamos un nuevo contenedor y lo lanzamos. Esta vez el comando para crear un con
   
 ```sudo lxc-create -t debian ContenedorDebian```  
   
-El comando para ejcutarlo es el mismo.  
-  
-![img]()  
+El comando para ejcutarlo es el mismo que en el apartado anterior. Sin embargo, vemos que nos suelta el siguiente error:  
 
-Sin embargo, vemos que nos suelta el siguiente error:  
-
-![img]()
+![img](capturas/t4ej3-1.PNG)
   
 Para arreglarlo, una web ofrecía una solución, que era instalando el paquete  ```apt-get install lxcfs``` y reiniciando el contenedor. 
   
@@ -63,15 +55,15 @@ crearla:
   
 ```sudo lxc-create -t centos ContenedorCentOS```  
   
-![img]()  
+![img](capturas/t4ej3-2.PNG)  
   
 **NOTA 2**: CentOS requiere de **yum**, al igual que ArchLinux requeria pacman. Asi que antes de crear el contenedor, hay que instalarlo en la maquina anfitriona:  
   
 ```sudo apt-get install yum```  
   
-Además es necesario cambiar la contraseña la primera vez que se arranque. Podemos ver que hay dos formas de hacerlo:  
+Además es necesario cambiar la contraseña la primera vez que se arranque. Hay varias formas de hacerlo, yo me decanté por la siguiente:
   
-![img]()  
+![img](capturas/t4ej3-3.PNG)  
   
 ### Ejercicio 4. Instalar lxc-webpanel y usarlo para arrancar, parar y visualizar las máquinas virtuales que se tengan instaladas. 
 
@@ -81,21 +73,19 @@ Según [la web oficial](https://lxc-webpanel.github.io/install.html) hay que usa
 
 **NOTA 3**: Como podemos ver, necesitamos ser root para poder instalarlo (el propio instalador nos lo dirá si no estamos):  
   
-![img]()  
+![img](capturas/t4ej4-1.PNG)  
 
 Después abrir la direccion loclahost, puerto 5000, y utilizar admin admin. El panel tendrá el siguiente aspecto:  
 
-![img]()  
+![img](capturas/t4ej4-2.PNG)  
   
-Desde aquí podemos parar, arrancar, pausar los contenedores. También podemos ver la información asociada a cada contenedor y configurarlo:  
+Desde aquí podemos parar, arrancar, pausar los contenedores. También podemos ver la información asociada a cada contenedor y configurarlo. 
   
-![img]()  
-  
-Desde el panel restringir los recursos que pueden usar: CPU shares, CPUs que se pueden usar (en sistemas multinúcleo) o cantidad de memoria.   
+### Desde el panel restringir los recursos que pueden usar: CPU shares, CPUs que se pueden usar (en sistemas multinúcleo) o cantidad de memoria.   
 
 He cogido por ejemplo el de ContenedorUbuntu. Lo seleccionamos en el menú lateral izquierdo, y desde la nueva pantalla, modificamos el valor de "Memory limit" al deseado. En mi caso, 512 MB:  
   
-![img]()  
+![img](capturas/t4ej4-3.PNG)  
   
 ### Ejercicio 5. Comparar las prestaciones de un servidor web en una jaula y el mismo servidor en un contenedor. Usar nginx. 
 
@@ -105,7 +95,7 @@ Trabajo sobre mi contenedor ContenedorUbuntu, creado en el primer apartado. Lo a
   
 Para comprobar que está instalado, podemos abrir la direccion del contenedor desde un navegador:  
   
-![img]()  
+![img](capturas/t4ej5-1.PNG)  
 
 Recordando lo dado el año pasado en una asignatura, para realizar los test de carga se puede utilizar la herramienta apache benchmark. Para ello instalamos en el contenedor:  
   
@@ -117,7 +107,7 @@ Ahora, para realizar el test, utilizo el siguiente comando:
   
 Donde hago 2000 peticiones, a un nivel de concurrencia de 500, sobre la dirección del contenedor. Cada uno puede poner la que quiera.  
 
-![img]()  
+![img](capturas/t4ej5-2.PNG)  
   
 Ahora paso a la segunda parte del ejercicio, a utilizarlo en una jaula. Para ello me he servido de estas web ([1](https://www.cyberciti.biz/faq/howto-run-nginx-in-a-chroot-jail/), [2](http://blog.dornea.nu/2016/01/15/howto-put-nginx-and-php-to-jail-in-debian-8/)),  donde indica paso a paso lo que hay que hacer. Yo voy a resumir varias cosas importantes de este proceso:  
   
@@ -141,7 +131,7 @@ Asi se instala **docker** en nuestro sistema. Lo que hay que hacer ahora es aña
     
  Realizamos a continuación la prueba, tal y como dice [su tutorial oficial](https://docs.docker.com/linux/step_one/), con el *hello_world*, para ello:  
    
- ![img]()  
+ ![img](capturas/t4ej6.PNG)  
    
  Como podemos observar, todo funciona correctamente.  
    
@@ -149,7 +139,7 @@ Asi se instala **docker** en nuestro sistema. Lo que hay que hacer ahora es aña
   
 Debemos acceder a la página donde están las imagenes, la página de [Docker](https://hub.docker.com/):  
   
- ![img]()  
+ ![img](capturas/t4ej7-1.PNG)  
    
 Desde ella, busco las imágenes de **Ubuntu**, y **CentOS**. Nos indicará qué comandos hay que utilizar para descargarlas, que son:  
 
@@ -163,7 +153,7 @@ Además el ejercicio nos pide que instalemos una imagen con **MongoDB**, podemos
    
  Para visualizar las imagénes instaladas solo hay que correr el comando ```docker images```:  
    
- ![img]()  
+ ![img](capturas/t4ej7-2.PNG)  
    
 ### Ejercicio 8. Crear un usuario propio e instalar nginx en el contenedor creado de esta forma.  
 
@@ -173,23 +163,21 @@ Trabajo directamente sobre la imagen de Ubuntu. En primer lugar, la arrancamos:
   
 Dentro de la máquina podemos crear el usuario tal y como se haría en ubuntu:  
   
- ![img]()  
+```àdd user chentaco```
    
  En la máquina, con apt-get, instalamos nginx y lo encendemos. Si queremos comprobar que funciona, podemos acceder desde la máquina anfritriona al servidor del contenedor, o acceder al contenido con un curl mismo.  
  
- ![img]()  
+ ![img](capturas/t4ej8.PNG)  
 
 ### Ejercicio 9. Crear a partir del contenedor anterior una imagen persistente con commit.
  
- Sigo trabajando sobre Ubunto. Tal y como dicen la documentación de este tema, en primer lugar hay que ver la id del contenedor con ```docker  ps -a ```:  
+ Sigo trabajando sobre Ubuntu. Tal y como dicen la documentación de este tema, en primer lugar hay que ver la id del contenedor con ```docker  ps -a ```:  
  
- ![img]()  
+ ![img](capturas/t4ej9-1.PNG)  
  
  Después realizaremos el commit, añadiendo la ID de nuestra imagen y una etiqueta:   
    
- ![img]()  
-   
- ![img]()  
+ ![img](capturas/t4ej9-2.PNG)   
  
 ### Ejercicio 10. Crear una imagen con las herramientas necesarias para el proyecto de la asignatura sobre un sistema operativo de tu elección.
 
@@ -236,26 +224,18 @@ EXPOSE 8000
    
  * Si todo ha ido bien, se habrá creado localmente la imagen:  
  
- ![img]()  
+ ![img](capturas/t4ej10-1.PNG)  
    
-  * La arrancamos para hacer pruebas con ```docker run -i -t ubuntumobagestor /bin/bash```:  
-  
- ![img]()  
- 
- ![img]()  
+  * La arrancamos para hacer pruebas con ```docker run -i -t ubuntumobagestor /bin/bash```.   
  
  Para subirla, se realizará con un push. Antes de nada habrá que logear con nuestro credenciales, usando ```docker login```. Después habrá que hacer **push** de la imagen.  
- **NOTA 3**: Para poder subir nuestro contenedor a un repositorio de docker, hay que crear la imagen de la forma **<nombre usuario docker>/imagen**, en mi caso **chentaco/mobagestor**:  
- 
- ![img]()   
+ **NOTA 3**: Para poder subir nuestro contenedor a un repositorio de docker, hay que crear la imagen de la forma **<nombre usuario docker>/imagen**, en mi caso **chentaco/mobagestor**.    
 
-![img]()  
+ * Finalmente, para tener nuestro contenedor online, se necesita configurar un nodo, con algún sericio web (apache, azure..) y hacer correr la aplicación para verla online. Yo no dispongo de ella, asi que lo que he realizado es un script, descargable [AQUÍ](https://github.com/Chentaco/Proyecto-IV/blob/master/scriptdocker.sh). Tras ejecutarlo, el contenedor se descargará y se ejecutará en local. Parra arrancar el serivor solo hay que ejecutar el siguiente comando (no puedo añadirlo directamente al script):  
 
-Finalmente, para tener nuestro contenedor online, se necesita configurar un nodo, con algún sericio web (apache, azure..) y hacer correr la aplicación para verla online. Yo no dispongo de ella, asi que lo que he realizado es un script, descargable [AQUÍ](https://github.com/Chentaco/Proyecto-IV/blob/master/scriptdocker.sh). Tras ejecutarlo, el contenedor se descargará y se ejecutará en local. Parra arrancar el serivor solo hay que ejecutar el siguiente comando (no puedo añadirlo directamente al script):  
+ ```python /Proyecto-IV/manage.py runserver 0.0.0.0:5500```  
 
-```python /Proyecto-IV/manage.py runserver 0.0.0.0:5500```  
-
-El servidor se ejecutará en la dirección del contenedor (en mi caso, 172.17.0.2:5500):  
+ El servidor se ejecutará en la dirección del contenedor (en mi caso, 172.17.0.2:5500):  
 
 
-![img]()  
+ ![img](capturas/t4ej10-2.PNG)  
