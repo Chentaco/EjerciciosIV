@@ -251,8 +251,11 @@ EXPOSE 8000
 
 ![img]()  
 
-Finalmente, para tener nuestro contenedor online, se necesita configurar un nodo, con algún sericio web (apache, azure..) y hacer correr la aplicación para verla online:  
+Finalmente, para tener nuestro contenedor online, se necesita configurar un nodo, con algún sericio web (apache, azure..) y hacer correr la aplicación para verla online. Yo no dispongo de ella, asi que lo que he realizado es un script, descargable [AQUÍ](https://github.com/Chentaco/Proyecto-IV/blob/master/scriptdocker.sh). Tras ejecutarlo, el contenedor se descargará y se ejecutará en local. Parra arrancar el serivor solo hay que ejecutar el siguiente comando (no puedo añadirlo directamente al script):  
+
+```python /Proyecto-IV/manage.py runserver 0.0.0.0:5500```  
+
+El servidor se ejecutará en la dirección del contenedor (en mi caso, 172.17.0.2:5500):  
+
 
 ![img]()  
-
-Puedes visitarla [AQUÍ]().
