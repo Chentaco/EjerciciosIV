@@ -11,7 +11,7 @@ En este apartado voy a comprobar que sigue siendo posible instalarlo. Uso el com
 kvm-ok
 ```  
 
-![img](capturadekvmok)  
+![img](capturas/t5e1-1.PNG)  
   
 Como vemos, está activo. Procedemos ahora a instalar los paquetes. Ubuntu nos ofrece [una guía detallada](https://help.ubuntu.com/community/KVM/Installation) con los pasos para llevar a cabo la instalación. En ella, podemos consultar lo anteriormente mecionado, y realizar la instalación de estos. Como mi versión de Ubuntu es superior a la **10.04**, utilizaré el siguiente comando:  
   
@@ -38,16 +38,13 @@ Como vemos, está activo. Procedemos ahora a instalar los paquetes. Ubuntu nos o
  
  Podemos verificar la instalación usando el comando ```virsh -c qemu://system list```:  
    
- ![img](capturadevirsh)  
+ ![img](capturas/t5e1-2.PNG)  
  
  Ya estaría listo para usar. Si lo deseamos podemos utilizar una interfaz gráfica, instalando el paquete **virt-manager**:  
    
  ```sudo apt-get install virt-manager```  
  
- Podemos ejecutarlo desde nuestro propio sistema, en el apartado de **Aplicaciones** debería aparecer. Siempre podemos usar el buscador de aplicaciones de Ubuntu (buscar Virtual Machine Manager, o Gestor de Maquinas Virtuales, si lo tienes en español).
- 
- ![img](imagendelvirtmanager)  
- 
+ Podemos ejecutarlo desde nuestro propio sistema, en el apartado de **Aplicaciones** debería aparecer. Siempre podemos usar el buscador de aplicaciones de Ubuntu (buscar Virtual Machine Manager, o Gestor de Maquinas Virtuales, si lo tienes en español).  
  
  **NOTA 2**: Al abrirlo, probablemente nos indique que faltan paquetes, pero gracias a dios puedes instalarlo desde el propio mensaje, no tienes que buscar en otro lado.  
 
@@ -71,10 +68,10 @@ qemu-system-x86_64 -machine accel=kvm -hda slitaz.qcow2 -cdrom /home/chentaco/Do
 ```  
 
 -**MiniNo**:  
-![img](imagendeMinino)
+![img](capturas/t5e2-1.PNG)
 
 -**SliTaz**:  
-![img](imagendesliztaz)  
+![img](capturas/t5e2-2.PNG)  
 
 Y continuando la instalación en ambas máquinas virtuales, siguiendo el instalador, hasta finalmente tenerlas funcionando.  
 
@@ -84,7 +81,7 @@ Y continuando la instalación en ambas máquinas virtuales, siguiendo el instala
 
 Usaré la misma image de MiniNo anterior y la instalaré en VirtualBox:  
 
-![img](instalacionVBMinino)  
+![img](capturas/t5e2-3.PNG)  
 
 ### Ejercicio 3. Crear un benchmark de velocidad de entrada salida y comprobar la diferencia entre usar paravirtualización y arrancar la máquina virtual simplemente con *qemu-system-x86_64 -hda /media/Backup/Isos/discovirtual.img* 
 
@@ -94,11 +91,9 @@ Arranco la máquina en primer lugar con el comando mostrado y uso el siguiente c
   
 ```dd if=/dev/zero of=./tmp bs=1M count=1024 conv=fdatasync,notrunc```
   
- ![img](comando) 
+ ![img](capturas/t5e3-1.PNG) 
   
- Ahora realizo lo mismo que en el paso anteior, pero esta vez, en lugar del comando para arrancarla automáticamente, uso paravirtualización:  
- 
- ![img](paravirtualizacion)
+ Ahora realizo lo mismo que en el paso anteior, pero esta vez, en lugar del comando para arrancarla automáticamente, uso paravirtualización. El resultado pasa de los 48 MB/S a 7 MB/S.  
  
  Podemos observar una diferencia destacable en lo que viene siendo los MB/s, donde es bastnate menor si **NO** usamos paravirtualizacion.
   
@@ -143,7 +138,7 @@ Lo que hacemos en primer lugar, para trabajar desde comandos en Ubuntu, es insta
   
 Hecho esto, necesitamos ahora ingresar con nuestro credenciales, es decir, loguear desde la linea de comandos. Existe el comando ```azure login```, el cual nos abrirá en el navegador una ventana y nos dará una clave para ingresarla en dicha ventana. Después desde esta, ingresaremos nuestra cuenta de azure/outlook asociada, y estará listo para poderse usar.  
 
-![img](capturadeazurelogin)  
+![img](capturas/t5e5-1.PNG)  
 
 Podemos empezar a crear nuestra máquina virtual. Para ver cuales están disponibles, podemos usar el comando ```azure vm image list``` y ver un listado de todas las disponibles. Yo escogí una de Ubuntu 14.04.  
   
@@ -160,13 +155,13 @@ Donde:
 - usuario: el nombre de mi usuario	
 - contraseña: la contraseña. **OJO**: requiere una mayus, un caracter especial y un número.  
 
-![img](semuestralainstalacion)  
+![img](capturas/t5e5-2.PNG)  
 
 Finalmente arranco la máquina con ```azure vm start <urlmaquina>```  
 
 Ya tendriamos nuestra máquina funcionando. Ahora, sobre dicha máquina, voy a instalar el servicio **nginx**. Para ello, debo conect por conexion ssh. Uso ```ssh <urlmaquina>```  :
 
-![img](enseñandocomosssh)  
+![img](capturas/t5e5-3.PNG)  
 
 Desde dentro, actualizo los repositorios de paquetese instalo nginx como hemos hecho siempre, con ```sudo apt-get install nginx```. También necesito abrir el puerto 80, que es el que usa nginx. Asi que, desde **fuera** ejecuto el siguiente comando:  
   
@@ -174,12 +169,12 @@ Desde dentro, actualizo los repositorios de paquetese instalo nginx como hemos h
 
 Puedo ver que está abierto y que funciona desde el navegador:  
 
-![img](listapuertos)  
-![img](urlnginx)  
+![img](capturas/t5e5-4.PNG)  
+![img](capturas/t5e5-5.PNG)  
   
 ### Ejercicio 6. Instalar una máquina virtual con Linux Mint para el hipervisor que tengas instalado.
 
 De nuevo, en **Virtualbox**, instalo la [imagen de Mint 17.3](https://www.linuxmint.com/edition.php?id=204):  
 
-![img](mintinstalando)
-![img](mintfuncionando)  
+![img](capturas/t5e6-1.PNG)
+![img](capturas/t5e6-2.PNG)  
