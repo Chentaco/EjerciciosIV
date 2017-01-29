@@ -41,7 +41,46 @@ ssh-copy-id -i ~/.ssh/id_dsa.pub chentaco@azurevm-ubuntu14-chentaco.cloudapp.net
 Ahora pasamos a crear el **playbook**. Para ello, creé un archivo llamado "playbookMOBAgestor.yml" con el siguiente contenido:  
 
 ```
+- hosts: localhost
+  remote_user: vagrant
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Actualizar repositorios
+    apt: update_cache=yes
+    tags: 
+    - apt-update
+        
+  - name: Instalar dependencias
+    apt: name={{ item }}
+    with_items:
+      - python-setuptools
+      - python-dev
+      - build-essential
+      - python-psycopg2
+      - git
+    tags:
+    - dependencias
+    
+  - name: easy_install
+    easy_install: name=pip
+    tags:
+    - pip
+    
+  - name: Descargar fuentes
+    git: repo=https://github.com/Chentaco/Proyecto-IV.git dest=~/appDAI force=yes
+    tags:
+    - fuentes
+    
+  - name: Instalar requirements
+    pip: requirements=~/appDAI/requirements.txt
+    tags:
+    - requirements  
 
+  - name: Lanzar app
+    command: nohup python ~/appDAI/manage.py runserver 0.0.0.0:80
+    tags:
+    - app
 ```  
 
 Destacar sobre este código que indico las dependencias, las fuentes de mi aplicación, los requeriments, etc.  
@@ -63,7 +102,8 @@ Desde las prácticas de DAI hemos usado la versión Vagrant 1.9, la cual ya teng
 
 Ahora bajo una imagen de Debian. De nuevo, en la página de Vagrant hay un listado de imagenes de bastantes sistemas operativos. Solo hay que bajar el que deseemos. En mi caso uno con guest-additions:  
 
-```vagrant box add debian8 https://github.com/holms/vagrant-jessie-box/releases/download/Jessie-v0.1/Debian-jessie-amd64-netboot.box
+```
+vagrant box add debian8 https://github.com/holms/vagrant-jessie-box/releases/download/Jessie-v0.1/Debian-jessie-amd64-netboot.box
 ```  
 
 ![img](instalacionvbox)  
