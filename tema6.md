@@ -1,10 +1,8 @@
 ## Tema 6
 
 ### Ejercicio 1. Instalar chef en la máquina virtual que vayamos a usar.
-
+Basta con usar el siguiente comando:  
 ```curl -L https://www.opscode.com/chef/install.sh | sudo bash```  
-
-![img](chefinstalado)  
 
 ### Ejercicio 2. Crear una receta para instalar la aplicación que se viene creando en la asignatura en alguna máquina virtual o servidor en la nube.
 
@@ -16,7 +14,7 @@ En primer lugar instalo **Ansible**. Según su web, necesito tener todas las dep
 
 ```sudo pip install paramiko PyYAML jinja2 httplib2 ansible```  
 
-Recordemos que en el [tema5](https://github.com/Chentaco/EjerciciosIV/tema5.md) usamos una máquina virtual de azure, que es sobre la que trabajaremos todo el proyecto. Hay que añadir entonces ese nombre a los hosts de ansible. Para ello la añado al archivo "ansible_hosts" y los exporto:  
+Recordemos que en el [tema5](https://github.com/Chentaco/EjerciciosIV/blob/master/tema5.md) usamos una máquina virtual de azure, que es sobre la que trabajaremos todo el proyecto. Hay que añadir entonces ese nombre a los hosts de ansible. Para ello la añado al archivo "ansible_hosts" y los exporto:  
 
 ```
 echo "<nombreurl>.cloudapp.net" > ~/ansible_hosts  
@@ -27,7 +25,7 @@ Recordemos también que teníamos que tener el CLI de Azure, estar logueados, et
 
 Ahora, arrancamos la máquina de azure con ```azure vm start <nombreurl>```:  
 
-![img](seveelstart)  
+![img](capturas/t6e3-1.PNG)  
 
 Creamos un par de claves, pública y privada, para conectarnos a través de SSH sin que nos pida cada vez la contraseña:  
 
@@ -87,18 +85,18 @@ Destacar sobre este código que indico las dependencias, las fuentes de mi aplic
 
 Lo ejecuto con: ```ansible-playbook playbookMOBAgestor.yml```  
 
-![img](imagendondefuncionaelplaybook)  
+![img](capturas/t6e3-2.PNG)  
 
-![img](imagendeldespliegue)  
+![img](capturas/t6e3-3.PNG)  
 
 Podemos visitarla en http://azurevm-ubuntu14-chentaco.cloudapp.net  
 
   
 ### Ejercicio 4. Instalar una máquina virtual Debian usando Vagrant y conectar con ella. 
 
-Desde las prácticas de DAI hemos usado la versión Vagrant 1.9, la cual ya tengo instalada. En el caso de que no, solo hay que ir a la página oficial de [Vagrant](https://www.vagrantup.com/downloads.html), descargar tu versión e instalarla. También puedes hacerlo mediante el gestor de paquetes o por comandos (dpkg).  
+Desde las prácticas de DAI hemos usado la versión Vagrant 1.8, la cual ya tengo instalada. En el caso de que no, solo hay que ir a la página oficial de [Vagrant](https://www.vagrantup.com/downloads.html), descargar tu versión e instalarla. También puedes hacerlo mediante el gestor de paquetes o por comandos (dpkg).  
 
-![img](vemomiversion)  
+![img](capturas/t6e4-1.PNG)  
 
 Ahora bajo una imagen de Debian. De nuevo, en la página de Vagrant hay un listado de imagenes de bastantes sistemas operativos. Solo hay que bajar el que deseemos. En mi caso uno con guest-additions:  
 
@@ -106,15 +104,15 @@ Ahora bajo una imagen de Debian. De nuevo, en la página de Vagrant hay un lista
 vagrant box add debian8 https://github.com/holms/vagrant-jessie-box/releases/download/Jessie-v0.1/Debian-jessie-amd64-netboot.box
 ```  
 
-![img](instalacionvbox)  
+![img](capturas/t6e4-2.PNG)  
 
 Creo el archivo Vagrantfile por defecto con ```vagrant init``` (se creará en el directorio actual), y la arranco con ```vagrant up```.  
 
-![img](maquinafuncionando)  
+![img](capturas/t6e4-3.PNG)  
 
 Para entrar a ella, basta con usar el comando ```vagrant ssh```:  
 
-![img](ssh)  
+![img](capturas/t6e4-4.PNG)  
 
   
 ### Ejercicio 5. Crear un script para provisionar `nginx` o cualquier otro servidor web que pueda ser útil para alguna otra práctica
@@ -129,7 +127,7 @@ config.vm.provision "shell", inline:
 
 De esta forma, se actualizarán los paquetes, instalará nginx y lo arrancará. Si volvemos a entrar en la máquina, vemos que está funcionando:  
 
-![img](nginxfuncionando)  
+![img](capturas/t6e5-1.PNG)  
 
 **NOTA 2**: Es necesario que, cuando queramos que esto funcione, en lugar de arrancar la máquina con "vagrant up" usemos ```vagrant provision```.  
 
