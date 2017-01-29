@@ -101,7 +101,9 @@ Arranco la máquina en primer lugar con el comando mostrado y uso el siguiente c
 
 Necesitamos el entorno LXDE, y un sistema que nos proporciona esto, es **Lubuntu**. Realizamos los mismos pasos que en el ejercicio 2: crear el disco e instalar la máquina en él:  
 
-![img](veoquetodook)  
+![img](capturas/t5e4-1.PNG)  
+
+**NOTA**: Ahora cuando ejecutemos la máquina, hay que añadir el parámetro al final para indicarle que vamos a usar 512 megas de RAM (512MB).  
 
 Ahora, para acceder a ella, necesito un cliente VNC. En ubuntu disponemos del paquete **vinagre**. Procedos a su instalación:  
 
@@ -109,11 +111,11 @@ Ahora, para acceder a ella, necesito un cliente VNC. En ubuntu disponemos del pa
 
 Buscamos la dirección de interfaz NAT de acceso a KVM, utilizo el comando ```ifconfig virb0```, donde **virb0* es dicha interfaz:  
 
-![img](imagendondevirbo0)  
+![img](capturas/t5e4-2.PNG)  
 
-Usando esa dirección ip, realizo la conexión con vinagre:  
+Usando esa dirección ip, realizo la conexión con vinagre. 
 
-![img](imagenvinagre)  
+**NOTA 2**: Esta vez, para poder entrar por VNC, hay que añadir como parámetro al final que vamos a hacer la conexión asi.   
 
 Ahora trabajemos con el **SSH**. Recordando un poco lo mencionado en DAI, el puerto que SSH utiliza es el 22, y tenemos que hacer que se redirija a algún otro para poder utilizarlo desde la máquina anfitriona. ¿Por qué no 2211? Añado al comando de ejecución automática este parámetro de redirección:  
 
