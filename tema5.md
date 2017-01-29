@@ -7,22 +7,32 @@ Puedes consultar la instalación del paquete y sus detalles en el [ejercicio 4 d
 
 En este apartado voy a comprobar que sigue siendo posible instalarlo. Uso el comando:  
 
-```kvm-ok```  
+```
+kvm-ok
+```  
 
 ![img](capturadekvmok)  
   
 Como vemos, está activo. Procedemos ahora a instalar los paquetes. Ubuntu nos ofrece [una guía detallada](https://help.ubuntu.com/community/KVM/Installation) con los pasos para llevar a cabo la instalación. En ella, podemos consultar lo anteriormente mecionado, y realizar la instalación de estos. Como mi versión de Ubuntu es superior a la **10.04**, utilizaré el siguiente comando:  
   
- ```sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils```  
+ ```
+ sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils
+ ```  
  
  Completada la instalación, seguimos con lo que comenta la guía. Ahora nos pide que hay que añadir los usuarios a **libvirtd** para poder crear máquinas virtuales desde la linea de comandos con nuestro usuario. Para ello, antes de nada, necesito instalar le paquete, y tras eso, añadir los usuarios correspondientes. La secuencia de comandos seria la siguiente:  
  
  Instaldo el paquete.  
- ```sudo apt-get install virtinst```  
+ ```
+ sudo apt-get install virtinst
+ ```  
  
  Añado mi usuario, en este caso "chentaco":  
- ```sudo adduser chentaco kvm```  
- ```sudo adduser chentaco libvirtd```  
+ ```
+ sudo adduser chentaco kvm
+ ```  
+ ```
+ sudo adduser chentaco libvirtd
+ ```  
  
  **NOTA**: Es necesario recargar el sistema, o recargar el usuario en este para que los cambios tengan efecto.  
  
