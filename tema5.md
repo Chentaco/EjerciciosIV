@@ -122,7 +122,8 @@ Usando esa dirección ip, realizo la conexión con vinagre:
 
 Ahora trabajemos con el **SSH**. Recordando un poco lo mencionado en DAI, el puerto que SSH utiliza es el 22, y tenemos que hacer que se redirija a algún otro para poder utilizarlo desde la máquina anfitriona. ¿Por qué no 2211? Añado al comando de ejecución automática este parámetro de redirección:  
 
-```qemu-system-x86_64 -boot order=c -drive file=~/qemu/hdd-lubuntu.img,if=virtio -m 512M -name lubuntu -redir tcp:2211::22
+```
+qemu-system-x86_64 -boot order=c -drive file=~/qemu/hdd-lubuntu.img,if=virtio -m 512M -name lubuntu -redir tcp:2211::22
 ```
 
 Solo quedaría conectarnos a dicho sistema con el comando siguiente:  
